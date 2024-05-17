@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: floodprediction
+  name: floodapp
   labels:
     app: web
 spec:
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: predictor
-          image: emreyldzgl/mymlapp
+          image: emreyldzgl/floodapp
           ports:
             - containerPort: 8501
