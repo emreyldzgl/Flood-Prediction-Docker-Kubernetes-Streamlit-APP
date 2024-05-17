@@ -1,11 +1,18 @@
-FROM python:3.8
+# Base image olarak Python'un resmi imajını kullan
+FROM python:3.9-slim
 
-WORKDIR /usr/local/src/app
+# Çalışma dizinini oluştur ve ayarla
+WORKDIR /app
 
+# Gereksinim dosyasını kopyala ve bağımlılıkları yükle
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Uygulama dosyalarını kopyala
 COPY . .
 
-RUN pip install -r requirements.txt
+# Streamlit'in varsayılan portunu belirt
+EXPOSE 8501
 
-EXPOSE 80
-
-CMD ["python", "app/main.py"]
+# Uygulamayı çalıştır
+CMD ["streamlit", "run", "app/app.py"]

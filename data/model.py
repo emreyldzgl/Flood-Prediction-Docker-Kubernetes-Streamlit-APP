@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 
 pd.set_option('display.max_columns', 30)
 
-df = pd.read_csv("../data/flood.csv")
+df = pd.read_csv("flood.csv")
 df.head()
 
 
@@ -118,4 +118,4 @@ reg = CatBoostRegressor(**best_params, verbose=False, random_state=17)
 reg.fit(X_train, y_train)
 
 
-joblib.dump(reg, 'model.pkl')
+joblib.dump(reg, '../app/model.pkl')

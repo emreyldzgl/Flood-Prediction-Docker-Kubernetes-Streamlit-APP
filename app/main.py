@@ -37,7 +37,7 @@ class MyData(BaseModel):
 
 @app.post('/predict')
 def predict(data: MyData):
-    my_model = joblib.load("app/model.pkl")
+    my_model = joblib.load("model.pkl")
     X = np.array([
         data.MonsoonIntensity,
         data.TopographyDrainage,
