@@ -1,3 +1,4 @@
+import base64
 import streamlit as st
 import numpy as np
 import joblib
@@ -5,62 +6,155 @@ import joblib
 # Load the model
 my_model = joblib.load("app/model.pkl")
 
+
+st.set_page_config(page_title="Flood Prediction",
+                   layout="centered",
+                   page_icon="data/flood.ico")
+
+
 # Define the Streamlit app
+st.markdown("""
+    <style>
+        .title {
+            text-align: center;
+            font-family: Yellow peace;
+            font-weight: lighter;
+            color: rgba(255, 255, 255, 1);
+            font-size: 2.5rem;
+            padding-bottom: 20px;
+        }
+        .me {
+            text-align: center;
+            font-family: Yellow peace;
+            color: rgba(94, 78, 207);
+            font-size: 1 rem;
+            padding: 0;
+            margin: 0;
+        }
+        .a {
+            text-align: center;
+            font-family: Yellow peace;
+            color: rgba(94, 78, 207);
+            padding: 0;
+            margin: 0;
+        }
 
-st.title("Flood ML App")
+    </style>
+""", unsafe_allow_html=True)
+st.markdown("<h1 class='title'> 🌊 Flood Prediction </h1>", unsafe_allow_html=True)
 
-st.write("Enter the values for the features below:")
 
-# Create input fields for the user to enter data
-MonsoonIntensity = st.number_input("Monsoon Intensity", min_value=0, max_value=10, step=1)
-TopographyDrainage = st.number_input("Topography Drainage", min_value=0, max_value=10, step=1)
-RiverManagement = st.number_input("River Management", min_value=0, max_value=10, step=1)
-Deforestation = st.number_input("Deforestation", min_value=0, max_value=10, step=1)
-Urbanization = st.number_input("Urbanization", min_value=0, max_value=10, step=1)
-ClimateChange = st.number_input("Climate Change", min_value=0, max_value=10, step=1)
-DamsQuality = st.number_input("Dams Quality", min_value=0, max_value=10, step=1)
-Siltation = st.number_input("Siltation", min_value=0, max_value=10, step=1)
-AgriculturalPractices = st.number_input("Agricultural Practices", min_value=0, max_value=10, step=1)
-Encroachments = st.number_input("Encroachments", min_value=0, max_value=10, step=1)
-IneffectiveDisasterPreparedness = st.number_input("Ineffective Disaster Preparedness", min_value=0, max_value=10, step=1)
-DrainageSystems = st.number_input("Drainage Systems", min_value=0, max_value=10, step=1)
-CoastalVulnerability = st.number_input("Coastal Vulnerability", min_value=0, max_value=10, step=1)
-Landslides = st.number_input("Landslides", min_value=0, max_value=10, step=1)
-Watersheds = st.number_input("Watersheds", min_value=0, max_value=10, step=1)
-DeterioratingInfrastructure = st.number_input("Deteriorating Infrastructure", min_value=0, max_value=10, step=1)
-PopulationScore = st.number_input("Population Score", min_value=0, max_value=10, step=1)
-WetlandLoss = st.number_input("Wetland Loss", min_value=0, max_value=10, step=1)
-InadequatePlanning = st.number_input("Inadequate Planning", min_value=0, max_value=10, step=1)
-PoliticalFactors = st.number_input("Political Factors", min_value=0, max_value=10, step=1)
+def get_img_as_base64(file):
+    with open(file, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
 
-# Create a button to make predictions
-if st.button("Predict"):
-    # Create the feature array for prediction
-    X = np.array([
-            MonsoonIntensity,
-            TopographyDrainage,
-            RiverManagement,
-            Deforestation,
-            Urbanization,
-            ClimateChange,
-            DamsQuality,
-            Siltation,
-            AgriculturalPractices,
-            Encroachments,
-            IneffectiveDisasterPreparedness,
-            DrainageSystems,
-            CoastalVulnerability,
-            Landslides,
-            Watersheds,
-            DeterioratingInfrastructure,
-            PopulationScore,
-            WetlandLoss,
-            InadequatePlanning,
-            PoliticalFactors
-        ]).reshape(1, -1)
 
-    # Make prediction
-    prediction = my_model.predict(X)
+img = get_img_as_base64("./data/flood.jpg")
+page_bg_img = f"""
+<style>
+[data-testid="stAppViewContainer"] > .main {{
+background-image:url("data:image/png;base64,{img}");
+background-size: cover;
+background-position: center top;
+background-repeat: no-repeat;
+background-attachment: local;
+}}
+[data-testid="stHeader"]
+{{background: rgba(0, 0, 0, 0.2);}}
+{{[data-testid="stVerticalBlockBorderWrapper"]
+{{background-color: rgba(0, 0, 0, 0.2); border-radius: 16px;}}
+.st-ds 
+{{background-color: rgba(0, 0, 0, 0.2);}}
+[.data-testid="stColorBlock"]
+{{background-color: rgba(0, 0, 0, 0.2);}}
+</style>
+"""
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
-    # Display the prediction
-    st.success(f"The prediction is: {prediction[0]}")
+css_code = """
+<style>
+
+[data-baseweb="tab-list"] {
+    background-color: rgba(0, 0, 0, 0.6); /* Beyaz renk kodu */
+    color: black; /* Tab yazı rengini ayarlayın */
+    border-radius: 5px;
+    padding: 10px;
+}
+</style>
+"""
+st.markdown(css_code, unsafe_allow_html=True)
+
+
+
+
+# Sayfa Düzenine Tabların Eklenmesi
+taba, tabb, tabc, tabd, tabe, tabf, tabg, tabh, tab1, tab2, tab3 = st.tabs(["____", "____", "____", "____", "____",
+                                                                            "____", "____", "____",
+                                                                            "🌍 Geographical Features",
+                                                                            "🏗️️ Technical Specifications",
+                                                                            "❔ Prediction"])
+with tab1:
+    col1, col2 = st.columns(2)
+    with col1:
+        MonsoonIntensity = st.slider("Monsoon Intensity", min_value=0, max_value=16, step=1)
+        TopographyDrainage = st.number_input("Topography Drainage", min_value=0, max_value=18, step=1)
+        Deforestation = st.number_input("Deforestation", min_value=0, max_value=17, step=1)
+        ClimateChange = st.number_input("Climate Change", min_value=0, max_value=17, step=1)
+
+    with col2:
+        Encroachments = st.slider("Encroachments", min_value=0, max_value=18, step=1)
+        CoastalVulnerability = st.number_input("Coastal Vulnerability", min_value=0, max_value=17, step=1)
+        Landslides = st.number_input("Landslides", min_value=0, max_value=16, step=1)
+        Watersheds = st.number_input("Watersheds", min_value=0, max_value=16, step=1)
+
+    WetlandLoss = st.slider("Wetland Loss", min_value=0, max_value=22, step=1)
+    Siltation = st.slider("Siltation", min_value=0, max_value=16, step=1)
+with tab2:
+    col3, col4 = st.columns(2)
+    with col3:
+        RiverManagement = st.slider("River Management", min_value=0, max_value=16, step=1)
+        Urbanization = st.slider("Urbanization", min_value=0, max_value=17, step=1)
+        DamsQuality = st.slider("Dams Quality", min_value=0, max_value=16, step=1)
+        AgriculturalPractices = st.slider("Agricultural Practices", min_value=0, max_value=16, step=1)
+        IneffectiveDisasterPreparedness = st.slider("Ineffective Disaster Preparedness", min_value=0,
+                                                    max_value=16, step=1)
+    with col4:
+        DrainageSystems = st.slider("Drainage Systems", min_value=0, max_value=17, step=1)
+        DeterioratingInfrastructure = st.slider("Deteriorating Infrastructure", min_value=0, max_value=17, step=1)
+        PopulationScore = st.slider("Population Score", min_value=0, max_value=19, step=1)
+
+        InadequatePlanning = st.slider("Inadequate Planning", min_value=0, max_value=16, step=1)
+        PoliticalFactors = st.slider("Political Factors", min_value=0, max_value=16, step=1)
+
+    with tab3:
+        if st.button("Predict"):
+            # Create the feature array for prediction
+            X = np.array([
+                MonsoonIntensity,
+                TopographyDrainage,
+                RiverManagement,
+                Deforestation,
+                Urbanization,
+                ClimateChange,
+                DamsQuality,
+                Siltation,
+                AgriculturalPractices,
+                Encroachments,
+                IneffectiveDisasterPreparedness,
+                DrainageSystems,
+                CoastalVulnerability,
+                Landslides,
+                Watersheds,
+                DeterioratingInfrastructure,
+                PopulationScore,
+                WetlandLoss,
+                InadequatePlanning,
+                PoliticalFactors
+            ]).reshape(1, -1)
+
+            # Make prediction
+            prediction = my_model.predict(X)
+
+            # Display the prediction
+            st.success(f"Flood Risk as a Percentage: {prediction[0]:.2f}")
