@@ -8,7 +8,7 @@
 <h2> <b> Technologies Used ⚙️</b> </h2>
 
 ![image](https://github.com/emreyldzgl/Flood-Prediction-Docker-Kubernetes-Streamlit-APP/blob/main/data/orig.png)
-<p> <a>  <b> CatboostRegressor :</b> Catboost Regressor was used because it showed high success as a machine learning model.</a></p>
+<p> <a>  <b> CatboostRegressor + OPTUNA :</b> Catboost Regressor was used because it showed high success as a machine learning model.</a></p>
 
 ![image](https://github.com/emreyldzgl/Flood-Prediction-Docker-Kubernetes-Streamlit-APP/blob/main/data/image2.png)
 <a> <b> Docker - DockerHub :</b> Using Docker and DockerHub, we have enabled a machine learning model to run in a virtual machine environment. This allows us to run our machine learning model in any environment without having to set up the environment each time. For this purpose, I created a Dockerfile locally and included a requirements.txt file to set up the necessary environment. Then, I pushed the Docker image I created locally to a repository on DockerHub and made my Docker image available for sharing.</a>
