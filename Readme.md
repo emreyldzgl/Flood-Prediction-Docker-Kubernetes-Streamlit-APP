@@ -19,4 +19,4 @@
 ![image](https://github.com/emreyldzgl/Flood-Prediction-Docker-Kubernetes-Streamlit-APP/blob/main/data/streamlit.png)
 <p> <a>  <b> Streamlit :</b> I coded an interface for my application using Streamlit and created a website where I can interactively obtain results.</a></p>
 
-[Flood Prediction App - Streamlit](https://34.122.26.94/)
+[Flood Prediction App - Streamlit](http://34.122.26.94/)
