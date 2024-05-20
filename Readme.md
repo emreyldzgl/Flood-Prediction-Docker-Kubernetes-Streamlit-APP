@@ -5,6 +5,7 @@
 <p> <a> Flood detection is a website used to calculate the presence or probability of flooding in a particular area. </a></p>
 
 <h2> <b> Schema 🛠 </b> </h2>
+
 ![image](https://github.com/emreyldzgl/Flood-Prediction-Docker-Kubernetes-Streamlit-APP/blob/main/data/schema.png) 
 
 <h2> <b> Technologies Used ⚙️</b> </h2>
