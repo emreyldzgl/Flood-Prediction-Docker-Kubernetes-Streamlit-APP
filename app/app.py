@@ -89,11 +89,17 @@ st.markdown(css_code, unsafe_allow_html=True)
 
 
 # Sayfa Düzenine Tabların Eklenmesi
-taba, tabb, tabc, tabd, tabe, tabf, tabg, tabh, tab1, tab2, tab3 = st.tabs(["____", "____", "____", "____", "____",
-                                                                            "____", "____", "____",
-                                                                            "🌍 Geographical Features",
-                                                                            "🏗️️ Technical Specifications",
-                                                                            "❔ Prediction"])
+tab1, tab2, tab3 = st.tabs(["🌍 Geographical Features","🏗️️ Technical Specifications","❔ Prediction"])
+
+st.markdown("""
+    <style>
+    div[role="tablist"] {
+        justify-content: center;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+
 with tab1:
     col1, col2 = st.columns(2)
     with col1:
